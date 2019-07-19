@@ -14,4 +14,11 @@ Can you talk a little about Java?
 3. The bytecode generated is a **non-executable code** and needs an interpreter to execute on a machine. 
 4. This interpreter is the **JVM** and thus the Bytecode is executed by the JVM. So Java language is termed as **portability**
 5. Java is platform independent but **JVM is platform dependent**. 因此[不同的OS对应不同的jdk](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
-
+### how to implement JAVA "compile once, run anywhere"?
+1. 为什么JVM不直接将source code解析成machine code去执行？
+** 避免不必要的准备工作，如果jvm把 source code 解析成machine code去执行，每次都需要执行各种语法检查，冗余工作
+** 兼容性考虑，其他语言也可以解析成byte code，在jvm上执行。例如Ruby, Groovy 等 其他[list of JVM languages](https://en.wikipedia.org/wiki/List_of_JVM_languages)
+2. 如何实现
+java首先利用命令**javac**把source code 转化为 byte code，再由不同平台的jvm进行解析成machine code。java语言在不同平台上的运行不需要进行重新编译，java 虚拟机通过命令**java**在执行字节码时，把字节码转化为具体平台上的机器指令。
+### 如何查看字节码？
+**javap** -c class文件
