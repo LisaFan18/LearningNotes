@@ -30,7 +30,7 @@ Here are my learning notes of Java Design Patterns: Creational on lynda
 ## Chapter 3: Singleton Pattern
 1. Why?
 Limit instances of a class to one. 
-2. 
+2. When? to create multiple instances of a class while still making sure that there is a way to access that one instance. 
 ## Chapter 4: Prototype Pattern 
 ## Chapter 5: Factory Method Pattern
 ## Chapter 6: Abstract Factories
