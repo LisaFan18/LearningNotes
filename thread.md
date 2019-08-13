@@ -1,4 +1,10 @@
-## 常见问题
+## Reference
+1. [Quora: the best of tutorial of java multithreading](https://www.quora.com/Where-can-I-find-the-best-tutorial-of-Java-multithreading)
+  * https://www.javatpoint.com/multithreading-in-java 
+  * http://www.tutorialspoint.com/java/java_multithreading.htm 
+  * https://docs.oracle.com/javase/tutorial/essential/concurrency/procthread.html
+
+## Q1_进程和线程的区别
 1. 背景知识点  
 Linux的用户态和内核态是如何进行转换的，系统中断，内核态的多进程是如何通过轻量级线程实现的。把这些概念融入到java 线程相关的题目里
 2. 进程和线程的由来
@@ -41,4 +47,6 @@ public class CurrentThread {
 }
 ```
 
-  
+## Q2_ thread的start和run方法的区别
+1. run()方法只是只是thread的普通方法的调用，不会创建一个新的进程
+2. start()方法会创建一个新的子线程并启动。
