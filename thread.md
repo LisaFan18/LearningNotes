@@ -48,5 +48,35 @@ public class CurrentThread {
 ```
 
 ## Q2_ thread的start和run方法的区别
-1. run()方法只是只是thread的普通方法的调用，不会创建一个新的进程
-2. start()方法会创建一个新的子线程并启动。
+1. thread的start和run方法的区别
+* run()方法只是thread的普通方法的调用，不会创建一个新的进程. Thread.currentThread().getName() return "main"
+* start()方法会创建一个新的子线程并启动。 Thread.currentThread().getName() return "Thread - 0"
+```java
+
+```
+2. how does start() method work?
+* java.lang.Thread.start() -> native start0() -> JVM_StartThread -> thread_entry -> run()
+* native方法是外部非java的源码，在[openjdk可以查看对应source code](https://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/3ef3348195ff/src/share/native/java/lang/Thread.c)
+```java
+// Thread.c
+static JNINativeMethod methods[] = {
+    {"start0",           "()V",        (void *)&JVM_StartThread},
+    ...
+};
+// jvm.cpp
+JVM_ENTRY(void, JVM_StartThread(JNIEnv* env, jobject jthread)){
+...
+native_thread = new JavaThread(&thread_entry, sz);
+...}
+// thread_entry: 会new一个thread，用这个thread去call run方法
+static void thread_entry(JavaThread* thread, TRAPS) {
+  ...
+  JavaCalls::call_virtual(...
+                          vmSymbols::run_method_name(),
+                         ..);
+}
+```
+3. Runnable 和 Thread是什么关系
+* Thread是实现了Runnable接口的类，使得run支持多线程
+* java 类的单一继承原则，推荐多使用Runnable接口
+
