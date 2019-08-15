@@ -80,3 +80,68 @@ static void thread_entry(JavaThread* thread, TRAPS) {
 * Thread是实现了Runnable接口的类，使得run支持多线程
 * java 类的单一继承原则，推荐多使用Runnable接口
 
+4. run()方法如何传参？  
+跟thread相关的业务逻辑需要放在run方法里。public void run(){...} 通过下面的方法给run方法传参：
+* 构造函数传参
+* 成员变量传参(set/get method)
+* 回调函数传参
+
+5. run()方法如何得到返回值？
+有的程序的执行依赖于子任务的返回值。如何实现处理线程的返回值？实现子线程返回值的方法有：
+* 主线程循环等待法，直到子线程结束. 优点：实现简单，缺点：如果等待的成员变量很多，代码就会臃肿。
+* use Thread.join()方法，堵塞当前thread直到子thread处理完毕。优点：实现起来更简单，可以比主线程等待法更精准的控制；缺点：无法实现更精准的依赖关系，例如当无法实现：thread1执行到一半时，执行thread2.
+* 通过[Callable接口](https://docs.oracle.com/javase/8/docs/api/index.html?java/util/concurrent/Callable.html)实现：
+   * future task: 实现了Callable接口的任务，执行结束后可以得到一个future的对象。在该对象上调用get方法就可以得到该任务返回的object。
+   ```java
+   public class MyCallable implements Callable<String>{
+
+	@Override
+	public String call() throws Exception {
+		String value = "test Callable";
+		System.out.println("ready to work: ");
+		Thread.currentThread().sleep(5000);
+		System.out.println("work is done ");
+		return value;
+	}
+
+  }
+   public class FutureTaskDemo {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
+		MyCallable myCallable = new MyCallable();
+		FutureTask<String> futureTask = new FutureTask<>(myCallable);
+		new Thread(futureTask).start();
+		if(!futureTask.isDone()) {
+			System.out.println("Please wait: tasks haven't finished");
+		}
+		
+		System.out.println("by futureTask.get(), value = " + futureTask.get());
+	}
+    }
+
+   ```
+   * thread pool: 优点：可以提交多个实现Callable的类，让threadpool同时执行多个任务。方便对实现Callable的类做统一的管理
+   ```java
+   public class ThreadPoolDemo {
+	public static void main(String[] args) {
+		ExecutorService threadPool = Executors.newCachedThreadPool();
+		Future<String> futureTask = threadPool.submit(new MyCallable());
+		
+		if(!futureTask.isDone()) {
+			System.out.println("Please wait: tasks haven't finished");
+		}
+		
+		try {
+			System.out.println("by futureTask.get(), value = " + futureTask.get());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		} finally {
+			threadPool.shutdown();
+		}
+	}
+}
+   ```
+
+
+
