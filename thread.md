@@ -48,13 +48,13 @@ public class CurrentThread {
 ```
 
 ## Q2_ thread的start和run方法的区别
-1. thread的start和run方法的区别
+**1. thread的start和run方法的区别**
 * run()方法只是thread的普通方法的调用，不会创建一个新的进程. Thread.currentThread().getName() return "main"
 * start()方法会创建一个新的子线程并启动。 Thread.currentThread().getName() return "Thread - 0"
 ```java
 
 ```
-2. how does start() method work?
+**2. how does start() method work?**
 * java.lang.Thread.start() -> native start0() -> JVM_StartThread -> thread_entry -> run()
 * native方法是外部非java的源码，在[openjdk可以查看对应source code](https://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/3ef3348195ff/src/share/native/java/lang/Thread.c)
 ```java
@@ -76,17 +76,17 @@ static void thread_entry(JavaThread* thread, TRAPS) {
                          ..);
 }
 ```
-3. Runnable 和 Thread是什么关系
+**3. Runnable 和 Thread是什么关系**
 * Thread是实现了Runnable接口的类，使得run支持多线程
 * java 类的单一继承原则，推荐多使用Runnable接口
 
-4. run()方法如何传参？  
+**4. run()方法如何传参？**    
 跟thread相关的业务逻辑需要放在run方法里。public void run(){...} 通过下面的方法给run方法传参：
 * 构造函数传参
 * 成员变量传参(set/get method)
 * 回调函数传参
 
-5. run()方法如何得到返回值？
+**5. run()方法如何得到返回值？**
 有的程序的执行依赖于子任务的返回值。如何实现处理线程的返回值？实现子线程返回值的方法有：
 * 主线程循环等待法，直到子线程结束. 优点：实现简单，缺点：如果等待的成员变量很多，代码就会臃肿。
 * use Thread.join()方法，堵塞当前thread直到子thread处理完毕。优点：实现起来更简单，可以比主线程等待法更精准的控制；缺点：无法实现更精准的依赖关系，例如当无法实现：thread1执行到一半时，执行thread2.
@@ -142,6 +142,7 @@ static void thread_entry(JavaThread* thread, TRAPS) {
 	}
 }
    ```
-
+**6. Life cycle of a Thread (states)**
+A thread can be in one of [five states](https://www.javatpoint.com/life-cycle-of-a-thread): [new](http://www.tutorialspoint.com/java/java_multithreading.htm), runnable, running, waiting, dead. 
 
 
