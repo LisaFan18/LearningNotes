@@ -18,7 +18,11 @@ Design a elevator/parking lot/locker/vending machine
 * Thinking process
 * Correctness
 * Reasonalble
- * 面向对象三要素：封装，继承，多态. [6 OOD concept in Java](https://raygun.com/blog/oop-concepts-java/) 
+ * 面向对象三要素：[6 OOD concept in Java](https://raygun.com/blog/oop-concepts-java/), [Benefits of OOP](https://www.youtube.com/watch?v=pTB0EiLXUC8)
+   * Encapsulation: reduce complexity, increase reusability. function 参数个数越少越利于使用，OOD的方式很多function可以达到no parameter. 
+   * Abstract: reduce complexity, isolate impact of changes. 只有public的方法暴露给使用者，当property和private function修改时不会被外界感知。就像driver开车，只需要操作对外的button，无需直到内部引擎的工作原理
+   * Inheritance: eliminate redundant code
+   * Polymorphism: refactor ugly switch/case statements 
  * [三要素具体表现形式SOLD principle](https://medium.com/tech-tajawal/s-o-l-i-d-the-first-5-principles-of-ood-c0e743b9e54e)
    * [SOLID principle in Java](https://howtodoinjava.com/best-practices/5-class-design-principles-solid-in-java/)
    * [Spring Framework](https://www.tutorialspoint.com/spring/spring_interview_questions) shows [SOLID principle](https://www.baeldung.com/spring-interview-questions#Q4)
