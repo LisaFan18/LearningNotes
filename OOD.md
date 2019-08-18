@@ -26,8 +26,8 @@ Design a elevator/parking lot/locker/vending machine
  * [三要素具体表现形式SOLD principle](https://medium.com/tech-tajawal/s-o-l-i-d-the-first-5-principles-of-ood-c0e743b9e54e)
    * [SOLID principle in Java](https://howtodoinjava.com/best-practices/5-class-design-principles-solid-in-java/)
    * [Spring Framework](https://www.tutorialspoint.com/spring/spring_interview_questions) shows [SOLID principle](https://www.baeldung.com/spring-interview-questions#Q4)
-* Good practise
-* [Design Pattern](https://book.douban.com/subject_search?search_text=%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&cat=1001)
+* Good practise: access modifier (private, protected, public), exception
+* [Design Pattern](https://book.douban.com/subject_search?search_text=%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&cat=1001): strategy
 5. 5C解题法
 * Clarify：明确需求by 4W：what,how, who, when
 * Core objects:确定类和类之间的关系
