@@ -92,7 +92,8 @@ static void thread_entry(JavaThread* thread, TRAPS) {
 * use Thread.join()方法，堵塞当前thread直到子thread处理完毕。优点：实现起来更简单，可以比主线程等待法更精准的控制；缺点：无法实现更精准的依赖关系，例如当无法实现：thread1执行到一半时，执行thread2.
 * 通过[Callable接口](https://docs.oracle.com/javase/8/docs/api/index.html?java/util/concurrent/Callable.html)实现：
    * future task: 实现了Callable接口的任务，执行结束后可以得到一个future的对象。在该对象上调用get方法就可以得到该任务返回的object。
-   ```java
+
+```java
    public class MyCallable implements Callable<String>{
 
 	@Override
@@ -117,9 +118,9 @@ static void thread_entry(JavaThread* thread, TRAPS) {
 		System.out.println("by futureTask.get(), value = " + futureTask.get());
 	}
     }
-
-   ```
+```
    * thread pool: 优点：可以提交多个实现Callable的类，让threadpool同时执行多个任务。方便对实现Callable的类做统一的管理
+   
    ```java
    public class ThreadPoolDemo {
 	public static void main(String[] args) {
@@ -140,8 +141,9 @@ static void thread_entry(JavaThread* thread, TRAPS) {
 			threadPool.shutdown();
 		}
 	}
-}
-   ```
+  }
+ ```
+
 **6. Life cycle of a Thread (states)**
 A thread can be in one of [five states](https://www.javatpoint.com/life-cycle-of-a-thread): [new](http://www.tutorialspoint.com/java/java_multithreading.htm), runnable, running, waiting, dead. 
 
