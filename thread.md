@@ -144,7 +144,18 @@ static void thread_entry(JavaThread* thread, TRAPS) {
   }
  ```
 
-**6. Life cycle of a Thread (states)**
+## Q3 sleep 和 wait的区别
+**1. Life cycle of a Thread (states)**  
 A thread can be in one of [five states](https://www.javatpoint.com/life-cycle-of-a-thread): [new](http://www.tutorialspoint.com/java/java_multithreading.htm), runnable, running, waiting, dead. 
+
+**2. sleep 和 wait的区别**
+* sleep()是[Thread类的方法](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html)   
+**public static native void sleep(long timeout)** Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds
+* wait() 是[Object类的方法](https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html).   
+**public final native void wait(long timeout)** Causes the current thread to wait until another thread invokes the notify() method or the notifyAll() method for this object.
+* sleep 可以在任何地方使用。wait只能在sychronized方法或块里使用
+* Thread.sleep() 只会让出CPU，不会改变lock的行为；object.wait()不仅让出CPU，还会释放已经占有的资源同步锁。
+
+
 
 
