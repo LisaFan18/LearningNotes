@@ -1,5 +1,5 @@
+# Creational Patterns
 Here are my learning notes of Java Design Patterns: Creational on lynda
-
 ## Chapter 1: Creational Design Pattern
 1. design pattern
 * What: a way of structuring code to solve a specific problem.   
@@ -34,3 +34,23 @@ Limit instances of a class to one.
 ## Chapter 4: Prototype Pattern 
 ## Chapter 5: Factory Method Pattern
 ## Chapter 6: Abstract Factories
+
+# Structure Patterns
+## Adapter
+## Facade
+
+# Behavior Patterns
+## Observer 
+1. what?  
+* It's also known as Publish-Subscribe(Pub-Sub) Pattern. It defines one-to-many relationship between objects such as if one object is modified, its depenedent objects are to be notified automatically.  
+* key objects: subject, observer. A subject might have many observers.
+2. Why?  
+* decouple, main consistance between related objects, increase the reusability 
+* eg1: one application data object class; 3 presentation classes: spreedsheet object, char object and pie object
+* eg2: 1 data object; 3 presentation classes: BinaryObserver, OctalObserver, HexaObserver
+3. [Example Implements](https://www.tutorialspoint.com/design_pattern/observer_pattern.htm)
+
+# Reference
+1. https://www.tutorialspoint.com/design_pattern/observer_pattern.htm 
+2. Design Patterns: Elements of Reusable Object-Oriented Software
+3. Head First Design Patterns 
